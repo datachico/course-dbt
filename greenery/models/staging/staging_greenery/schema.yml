@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: stg_addresses
+    description: Address information that is tied to customer and order.
+    columns:
+      - name: address_id
+        tests:
+          - not_null
+          - unique
+  - name: stg_events
+    description: Website event logs for given user. Events can be tied to a specific order_id and product_id. For a given session_id, there are multiple events.
+    columns:
+      - name: session_id
+        tests:
+          - not_null
+  - name: stg_order_items
+    description: For a given order_id, which products and what quantity were ordered? 
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+  - name: stg_orders
+    description: Detailed information on orders.
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+          - unique
+  - name: stg_products
+    description: Product info - price, name and inventory.
+    columns:
+      - name: product_id
+        tests:
+          - not_null
+          - unique
+  - name: stg_promos
+    description: If there is a promo applied to the order, the discount and status is shown here.
+    columns:
+      - name: promo_id
+        tests:
+          - not_null
+          - unique
