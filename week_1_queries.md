@@ -1,8 +1,11 @@
-sdddssds(1)How many users do we have?
+(1)How many users do we have?
+
     130
+    
     select count(distinct user_id) from dbt_patrick_n."stg_users"
 
 (2)On average, how many orders do we receive per hour?
+
     7.52
 
     with count_orders_by_hour as (
