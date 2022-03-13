@@ -1,7 +1,7 @@
 (1)How many users do we have?
 
     130
-    
+
     select count(distinct user_id) from dbt_patrick_n."stg_users"
 
 (2)On average, how many orders do we receive per hour?
@@ -21,6 +21,7 @@
     select avg(count_orders) from count_orders_by_hour
 
 (3) On average, how long does an order take from being placed to being delivered?
+
     3 days 21:24:11.803279
 
     with delivery_duration as (
@@ -63,6 +64,7 @@ order by 1
 (5) On average, how many unique sessions do we have per hour?
 
     16.32
+    
     with count_sessions_by_hour as (
         select 
             date_trunc('hour', created_at) as distinct_hour,
