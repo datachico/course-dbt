@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: stg_addresses
+    description: Address information that is tied to customer and order.
+    columns:
+      - name: address_id
+        tests:
+          - not_null
+          - unique
