@@ -1,8 +1,27 @@
 version: 2
 
 models:
-  - name: stg_addresses
-    description: Address information that is tied to customer and order.
+  - name: dim_customers
+    description: Detailed customer table.
+    columns:
+      - name: address_id
+        tests:
+          - not_null
+          - unique
+      - name: all_time_purchases
+        description: Total orders the customer has purchased.
+        tests:
+          - positive_values     
+      - name: promo_purchases
+        description: Total orders purchased using a promo code.
+        tests:
+          - positive_values  
+      - name: avg_delivery_duration
+        description: For all orders of a given customer, average time from order to delivery.
+      - name: avg_diff_actual_est_delivery
+        description: For all orders of a given customer, average difference between actual vs. estimated delivery time (positive value means that the order arrived earlier than the estimate).
+  - name: fct_orders
+    description: Robust orders table.
     columns:
       - name: address_id
         tests:
