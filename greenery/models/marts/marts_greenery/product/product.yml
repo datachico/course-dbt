@@ -1,0 +1,6 @@
+version: 2
+
+models:
+  - name: fct_customer_sessions
+    description: Customer sessions created from event data. Work in Progress.
+

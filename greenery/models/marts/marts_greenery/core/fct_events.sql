@@ -8,6 +8,8 @@ with stg_events as (
     select * from {{ ref('stg_events') }}
 )
 
+
+
 select 
     session_id
     , user_id

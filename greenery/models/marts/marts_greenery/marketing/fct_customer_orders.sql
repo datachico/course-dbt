@@ -35,7 +35,10 @@ with customers as (
 
 
 select 
-    customers.*
+    customers.user_id
+    , first_name
+    , last_name
+    , email
     , all_time_purchases
     , promo_purchases
     , avg_delivery_duration

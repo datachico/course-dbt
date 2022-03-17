@@ -53,12 +53,14 @@ A2 :
     * *lower* than average delivery time (delivered_at - created_at)
     * order arrives *earlier* than expected (delivered_at < estimated_delivery_at)
     * has previously purchased
+    * frequency - every month? every year? 
 * indicators of likely to NOT purchase again
     * *higher* than average delivery time (delivered_at - created_at)
     * order arrives *later* than expected (delivered_at < estimated_delivery_at)
 * Additional questions
     * Are there differences in cost, delivery time or accuracy of estimated delivery time between shpping services?
-    * What is the user retention rate by *product*? Is it possible that if a certain product is purchased first, there is a higher liklihood of repeat purchase?
+    * What is the user repeat purchase rate by *product*? Is it possible that if a certain product is purchased first, there is a higher liklihood of repeat purchase?
+    * Define 'retention rate' - some amount of days - 90 days - did they make another purchase?
     * Does the amount of products ordered and total cost of order influence repeat purchasing behavior?
     * Can we tie events (website activity) to help predict repeat user purchase behavior?
 * General questions

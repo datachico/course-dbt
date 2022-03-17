@@ -5,9 +5,6 @@ models:
     description: Detailed customer table.
     columns:
       - name: address_id
-        tests:
-          - not_null
-          - unique
       - name: all_time_purchases
         description: Total orders the customer has purchased.
         tests:
@@ -18,12 +15,11 @@ models:
           - positive_values  
       - name: avg_delivery_duration
         description: For all orders of a given customer, average time from order to delivery.
+        tests:
+          - positive_values
       - name: avg_diff_actual_est_delivery
         description: For all orders of a given customer, average difference between actual vs. estimated delivery time (positive value means that the order arrived earlier than the estimate).
+        tests:
+          - positive_values
   - name: fct_orders
     description: Robust orders table.
-    columns:
-      - name: address_id
-        tests:
-          - not_null
-          - unique
