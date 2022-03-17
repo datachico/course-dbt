@@ -48,21 +48,21 @@ select count_users_repeat_purchase / count_users_purchased * 100.0 as repeat_pur
 
 A2 :  
 
-Good indicators of likely repurchase:
-* promo used
-* *lower* than average delivery time (delivered_at - created_at)
-* order arrives *earlier* than expected (delivered_at < estimated_delivery_at)
-* has previously purchased
-
-Good indicators of likely to NOT purchase again:
-* *higher* than average delivery time (delivered_at - created_at)
-* order arrives *later* than expected (delivered_at < estimated_delivery_at)
-
-Additional questions
-* Are there differences in cost, delivery time or accuracy of estimated delivery time between shpping services?
-* What is the user retention rate by *product*? Is it possible that if a certain product is purchased first, there is a higher liklihood of repeat purchase?
-* Does the amount of products ordered and total cost of order influence repeat purchasing behavior?
-* Can we tie events (website activity) to help predict repeat user purchase behavior?
+* indicators of likely repurchase
+    * promo used
+    * *lower* than average delivery time (delivered_at - created_at)
+    * order arrives *earlier* than expected (delivered_at < estimated_delivery_at)
+    * has previously purchased
+* indicators of likely to NOT purchase again
+    * *higher* than average delivery time (delivered_at - created_at)
+    * order arrives *later* than expected (delivered_at < estimated_delivery_at)
+* Additional questions
+    * Are there differences in cost, delivery time or accuracy of estimated delivery time between shpping services?
+    * What is the user retention rate by *product*? Is it possible that if a certain product is purchased first, there is a higher liklihood of repeat purchase?
+    * Does the amount of products ordered and total cost of order influence repeat purchasing behavior?
+    * Can we tie events (website activity) to help predict repeat user purchase behavior?
+* General questions
+    * How long are people spending on our site?
 
 
 
