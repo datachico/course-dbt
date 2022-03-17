@@ -72,7 +72,7 @@ A2 :
 
 **Q3: Explain the marts models you added. Why did you organize the models in the way you did?**
 
-A3 :
+A3 : I relied heavily on the above exercise to build out my models. For example, I started with the customers model - and brought in information on purchasing behavior of the customer (total purchases, total unique products, etc). That way, this data would be available for easy analysis on repeat purchase rate. I followed a similar framework for fct_orders table - I pulled in additional data on each order (which in theory would help with analysis on repeat purchase rate) such as total # of products purchases, # unique products, delivery time, delivery actual vs. estimate, etc. 
 
 ---
 
@@ -80,19 +80,19 @@ A3 :
 
 **Q1 : What assumptions are you making about each model? (i.e. why are you adding each test?)**
 
-A1: 
+A1: This was a challenging one. I didn't dig in enough to find specific instances of bad data - therefore most of my tests were very generic. In my experience, tests have been created after bad data enters in order to prevent it in the future. 
 
 ---
 
 **Q2 : Did you find any “bad” data as you added and ran tests on your models? How did you go about either cleaning the data in the dbt model or adjusting your assumptions/tests?**
 
-A2 :
+A2 : No bad data was found.
 
 ---
 
 **Q3 : Your stakeholders at Greenery want to understand the state of the data each day. Explain how you would ensure these tests are passing regularly and how you would alert stakeholders about bad data getting through.**
 
-A3: 
+A3: I would set up scheduled jobs to refresh the models, and include tests. I would then set up an alerting system so that an analtyics engineer would see the alert and address the issue. 
 
 ---
 
