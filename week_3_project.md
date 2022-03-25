@@ -26,53 +26,84 @@ from calculation_table
 
 **Q2 : What is our conversion rate by product?**
 
-A2 :  
+A2 : See file fct_product_conversion.sql
 
-* indicators of likely repurchase
-    * promo used
-    * *lower* than average delivery time (delivered_at - created_at)
-    * order arrives *earlier* than expected (delivered_at < estimated_delivery_at)
-    * has previously purchased
-    * frequency - every month? every year? 
-* indicators of likely to NOT purchase again
-    * *higher* than average delivery time (delivered_at - created_at)
-    * order arrives *later* than expected (delivered_at < estimated_delivery_at)
-* Additional questions
-    * Are there differences in cost, delivery time or accuracy of estimated delivery time between shpping services?
-    * What is the user repeat purchase rate by *product*? Is it possible that if a certain product is purchased first, there is a higher liklihood of repeat purchase?
-    * Define 'retention rate' - some amount of days - 90 days - did they make another purchase?
-    * Does the amount of products ordered and total cost of order influence repeat purchasing behavior?
-    * Can we tie events (website activity) to help predict repeat user purchase behavior?
-* General questions
-    * How long are people spending on our site?
+```sql
+with unique_sessions_by_product as (
+  select 
+    product_id
+    , count(distinct session_id) as unique_sessions
+  from {{ ref('stg_events')}}
+  group by 1
+),
+
+purchased_products as (
+  select
+    session_id
+    , events.order_id
+    , order_items.product_id
+  from {{ ref('stg_events')}} events
+    left join {{ ref('stg_order_items')}} order_items on events.order_id = order_items.order_id
+),
+
+sessions_purchase_event_agg as (
+  select 
+    product_id
+    , count(distinct session_id) as purchase_event_sessions 
+  from purchased_products
+  group by 1
+),
+
+conversion_rate as (
+select 
+   unique_sessions_by_product.product_id,
+   unique_sessions,
+   purchase_event_sessions
+from unique_sessions_by_product
+join sessions_purchase_event_agg
+  on unique_sessions_by_product.product_id = sessions_purchase_event_agg.product_id
+)
+
+select 
+  a.product_id,
+  b.name,
+  purchase_event_sessions,
+  unique_sessions,
+  round(purchase_event_sessions * 1.0 / unique_sessions * 100, 1) as conversion_rate
+from conversion_rate a
+left join "dbt"."dbt_patrick_n"."stg_products" b on a.product_id = b.product_id
+
+```
 
 
+## (Part 2)  
+
+**Q1 : Create a macro to simplify part of a model(s)**
+
+A1: See 'int_session_events_agg.sql'. I found this a bit challenging to initially set up. I'm used to being able to print / debug in python so I'm still figuring out the best ways to do it in the dbt / jinja world. I'm curious as to if there is a more efficient elegant way to do this. 
 
 ---
 
-**Q3: Explain the marts models you added. Why did you organize the models in the way you did?**
+## (Part 3)  
 
-A3 : I relied heavily on the above exercise to build out my models. For example, I started with the customers model - and brought in information on purchasing behavior of the customer (total purchases, total unique products, etc). That way, this data would be available for easy analysis on repeat purchase rate. I followed a similar framework for fct_orders table - I pulled in additional data on each order (which in theory would help with analysis on repeat purchase rate) such as total # of products purchases, # unique products, delivery time, delivery actual vs. estimate, etc. 
+**Q1 : Create Post-hook**
 
----
-
-## (Part 2) Tests 
-
-**Q1 : What assumptions are you making about each model? (i.e. why are you adding each test?)**
-
-A1: This was a challenging one. I didn't dig in enough to find specific instances of bad data - therefore most of my tests were very generic. In my experience, tests have been created after bad data enters in order to prevent it in the future. 
+A1: Added. I'm still unclear on the exact use cases for running a post-hook at the model level vs. run-end (at the end of all the models.) As I start to use dbt more, I'm sure I'll see some examples for why this would be useful.
 
 ---
 
-**Q2 : Did you find any “bad” data as you added and ran tests on your models? How did you go about either cleaning the data in the dbt model or adjusting your assumptions/tests?**
+## (Part 4)  
 
-A2 : No bad data was found.
+**Q1 : Try dbt packages**
 
----
-
-**Q3 : Your stakeholders at Greenery want to understand the state of the data each day. Explain how you would ensure these tests are passing regularly and how you would alert stakeholders about bad data getting through.**
-
-A3: I would set up scheduled jobs to refresh the models, and include tests. I would then set up an alerting system so that an analtyics engineer would see the alert and address the issue. 
+A1: =
 
 ---
 
+## (Part 5)  
+
+**Q1 : Show new DAG.**
+
+A1: =
+
+---

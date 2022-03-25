@@ -3,4 +3,5 @@ version: 2
 models:
   - name: fct_customer_sessions
     description: Customer sessions created from event data. Work in Progress.
-
+  - name: fct_product_conversion
+    description: Conversion rate by product.
