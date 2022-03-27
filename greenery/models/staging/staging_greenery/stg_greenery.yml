@@ -41,3 +41,8 @@ models:
         tests:
           - not_null
           - unique
+  - name: stg_customers
+    description: Customer info.
+    tests:
+      - dbt_utils.fewer_rows_than:
+          compare_model: ref('stg_events') 

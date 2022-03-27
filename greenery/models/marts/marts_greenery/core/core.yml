@@ -15,11 +15,7 @@ models:
           - positive_values  
       - name: avg_delivery_duration
         description: For all orders of a given customer, average time from order to delivery.
-        tests:
-          - positive_values
       - name: avg_diff_actual_est_delivery
         description: For all orders of a given customer, average difference between actual vs. estimated delivery time (positive value means that the order arrived earlier than the estimate).
-        tests:
-          - positive_values
   - name: fct_orders
     description: Robust orders table.

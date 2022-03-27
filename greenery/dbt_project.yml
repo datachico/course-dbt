@@ -43,3 +43,6 @@ models:
 on-run-end:
   #- "GRANT USAGE ON SCHEMA {{ schema }} TO reporting"
   - "{{ grant('reporting') }}"
+
+vars:
+  'dbt_date:time_zone': 'America/Los_Angeles'

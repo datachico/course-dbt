@@ -96,7 +96,7 @@ A1: Added. I'm still unclear on the exact use cases for running a post-hook at t
 
 **Q1 : Try dbt packages**
 
-A1: =
+A1: = I used dbt_utils to add the 'fewer_rows_than' test to my users model. It compares the users staging model to the events model and asserts that users will have fewer rows than events. The idea is that the events table should always be larger than users, so we should test to make sure that's true. In reality, this test may not make the most sense but it was a good example of how to use dbt_utils to add a new test. I had trouble using dbt_expectations - it looks like there were a few more steps to get tests up and running - including modifying the profile.yml file. 
 
 ---
 
@@ -104,6 +104,6 @@ A1: =
 
 **Q1 : Show new DAG.**
 
-A1: =
+A1: = Attached to Slack post. 
 
 ---
