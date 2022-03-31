@@ -1,0 +1,18 @@
+version: 2
+
+exposures:
+  
+  - name: awesome_looker_dashboard_conversion_rate_by_product
+    type: dashboard
+    maturity: high
+    url: https://bi.tool/dashboards/product_conversion
+    description: >
+      Conversion rate by product.
+    
+    depends_on:
+      - ref('fct_product_conversion')
+      - ref('fct_customer_sessions')
+
+    owner:
+      name: Patrick
+      email: patrick@primary.health
