@@ -20,7 +20,7 @@ A2 : Was not able to complete.
 
 **Q1 : if your organization is thinking about using dbt, how would you pitch the value of dbt/analytics engineering to a decision maker at your organization?**
 
-A1 : 
+A1 : Using dbt will empower analysts to create clean code and only define it once. Metrics will be more efficiently refreshed and it will be easier to create new models and make changes. Data drift and silo'ing will be minimized because dbt allows for quick data lineage and creation of DAGs. dbt is well on it's way to being the defacto data transformation framework - it's time to jump on this rocket ship!. 
 
 ---
 
